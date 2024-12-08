@@ -1,0 +1,17 @@
+{
+  "name": "chuckbot-tg",
+  "module": "src/bot/index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun --watch src/bot/index.ts",
+    "start": "bun src/bot/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
