@@ -1,21 +1,21 @@
 {
-  "name": "chuckbot-tg",
-  "module": "src/bot/index.ts",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "dev": "bun --watch src/bot/index.ts",
-    "start": "bun src/bot/index.ts",
-    "typecheck": "tsc --noEmit"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "trustedDependencies": [
-    "@biomejs/biome"
-  ]
+	"name": "chuckbot-tg",
+	"module": "src/bot/index.ts",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"dev": "bun --watch src/bot/index.ts",
+		"start": "bun src/bot/index.ts",
+		"typecheck": "tsc --noEmit",
+		"lint": "biome lint --error-on-warnings",
+		"check": "biome check --write"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"trustedDependencies": ["@biomejs/biome"]
 }
