@@ -3,6 +3,7 @@ import { ZodError, z } from "zod";
 export const envSchema = z.object({
 	NODE_ENV: z.enum(["development", "production"]).default("development"),
 	BIRDEYE_API_KEY: z.string().min(1),
+	HELIUS_API_KEY: z.string().min(1),
 	//! TODO: Add more env variables here
 });
 
