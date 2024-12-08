@@ -19,6 +19,8 @@
 	},
 	"trustedDependencies": ["@biomejs/biome"],
 	"dependencies": {
+		"pino": "^9.5.0",
+		"pino-pretty": "^13.0.0",
 		"zod": "^3.23.8"
 	}
 }
