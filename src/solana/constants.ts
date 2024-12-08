@@ -15,5 +15,12 @@ export const HELIUS_RPC_BASE_REQUEST = {
 	id: crypto.randomUUID(),
 };
 
+//* Helius Parse Transactions API
+export const HELIUS_PARSE_TXNS_BASE_URL = "https://api.helius.xyz/v0/transactions";
+export const HELIUS_PARSE_TXNS_DEFAULT_PARAMS = {
+	"api-key": envConfig.HELIUS_API_KEY,
+	commitment: "confirmed",
+} as const;
+
 //* Solana
 export const SOLANA_BASE58_ADDRESS_REGEX = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
