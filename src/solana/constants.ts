@@ -20,3 +20,10 @@ export const HELIUS_PARSE_TXNS_URL = `https://api.helius.xyz/v0/transactions?api
 
 //* Solana
 export const SOLANA_BASE58_ADDRESS_REGEX = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
+
+export const SOLANA_PROGRAM_IDS = {
+	METAPLEX: "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s",
+	MOONSHOT: "MoonCVVNZFSYkqNXP6bxHLPL6QQJiMagDL3qcqUQTrG",
+	PUMPFUN: "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P",
+	SPL_TOKEN: "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+} as const;
