@@ -8,5 +8,12 @@ export const BIRDEYE_BASE_HEADERS = {
 	"x-chain": "solana",
 } as const;
 
+//* Helius RPC
+export const HELIUS_RPC_URL = `https://mainnet.helius-rpc.com/?api-key=${envConfig.HELIUS_API_KEY}`;
+export const HELIUS_RPC_BASE_REQUEST = {
+	jsonrpc: "2.0" as const,
+	id: crypto.randomUUID(),
+};
+
 //* Solana
 export const SOLANA_BASE58_ADDRESS_REGEX = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
