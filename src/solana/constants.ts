@@ -36,3 +36,6 @@ export const SOLANA_PROGRAM_IDS = {
 
 //* Raydium
 export const RAYDIUM_V4_AUTHORITY = "5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1";
+
+//* Solscan Account URL
+export const SOLSCAN_ACCOUNT_URL = "https://solscan.io/account";
