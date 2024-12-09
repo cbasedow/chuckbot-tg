@@ -30,6 +30,7 @@
 		"bignumber.js": "^9.1.2",
 		"bs58": "^6.0.0",
 		"drizzle-orm": "^0.38.0",
+		"drizzle-zod": "^0.6.0",
 		"fastpriorityqueue": "^0.7.5",
 		"grammy": "^1.33.0",
 		"hono": "^4.6.13",
