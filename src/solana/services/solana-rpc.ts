@@ -2,8 +2,8 @@ import { enhancedFetch } from "$/utils/enhanced-fetch";
 import { handleEnhancedResponse } from "$/utils/handle-enhanced-response";
 import { type ResultAsync, errAsync, okAsync } from "neverthrow";
 import { HELIUS_RPC_BASE_REQUEST, HELIUS_RPC_URL, SOLANA_PROGRAM_IDS } from "../constants";
-import { type ParsedTokenAccountInfo, parsedProgramAccountsResponseSchema } from "../schemas/solana";
-
+import { parsedProgramAccountsResponseSchema } from "../schemas/helius-rpc";
+import type { ParsedTokenAccountInfo } from "../schemas/solana";
 export const fetchTokenHoldersAccountsInfo = (tokenAddress: string): ResultAsync<ParsedTokenAccountInfo[], Error> => {
 	return enhancedFetch(HELIUS_RPC_URL, {
 		method: "POST",

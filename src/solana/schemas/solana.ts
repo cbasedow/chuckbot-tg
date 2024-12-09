@@ -1,6 +1,5 @@
 import { z } from "zod";
 import { SOLANA_BASE58_ADDRESS_REGEX } from "../constants";
-import { heliusRpcResponseSchema } from "./helius-rpc";
 
 export const solanaBase58AddressSchema = z.string().regex(SOLANA_BASE58_ADDRESS_REGEX);
 
@@ -30,13 +29,5 @@ export const parsedTokenAccountDataSchema = z.object({
 export const parsedProgramTokenAccountSchema = z.object({
 	data: parsedTokenAccountDataSchema,
 });
-
-export const parsedProgramAccountsResponseSchema = heliusRpcResponseSchema(
-	z
-		.object({
-			account: parsedProgramTokenAccountSchema,
-		})
-		.array(),
-);
 
 export type ParsedTokenAccountInfo = z.infer<typeof parsedTokenAccountInfoSchema>;

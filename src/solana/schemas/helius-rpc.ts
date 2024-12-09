@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { solanaBase58AddressSchema } from "./solana";
+import { parsedProgramTokenAccountSchema, solanaBase58AddressSchema } from "./solana";
 
 export const heliusRpcResponseSchema = <T extends z.ZodTypeAny>(resultSchema: T) => {
 	return z.object({
@@ -43,3 +43,11 @@ export const dasAssetSchema = z.object({
 
 export const dasAssetResponseSchema = heliusRpcResponseSchema(dasAssetSchema);
 export type DasAsset = z.infer<typeof dasAssetSchema>;
+
+export const parsedProgramAccountsResponseSchema = heliusRpcResponseSchema(
+	z
+		.object({
+			account: parsedProgramTokenAccountSchema,
+		})
+		.array(),
+);
