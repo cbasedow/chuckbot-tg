@@ -97,7 +97,14 @@ export const insertGroupSchema = createInsertSchema(groups);
 export const insertRefLinkSchema = createInsertSchema(refLinks);
 
 //* Types
-export type User = z.infer<typeof userSchema>;
-export type Group = z.infer<typeof groupSchema>;
-export type RefLinkPlatform = z.infer<typeof refLinkPlatformSchema>;
-export type RefLink = z.infer<typeof refLinkSchema>;
+export type DBUser = z.infer<typeof userSchema>;
+export type NewDBUser = z.infer<typeof insertUserSchema>;
+export type DBGroup = z.infer<typeof groupSchema>;
+export type NewDBGroup = z.infer<typeof insertGroupSchema>;
+export type DBRefLinkPlatform = z.infer<typeof refLinkPlatformSchema>;
+export type DBRefLink = z.infer<typeof refLinkSchema>;
+export type NewDBRefLink = z.infer<typeof insertRefLinkSchema>;
+export type DBRefLinkWithUser = DBRefLink & {
+	createdBy: DBUser;
+	updatedBy: DBUser;
+};
