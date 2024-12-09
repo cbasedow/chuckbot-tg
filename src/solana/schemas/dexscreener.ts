@@ -80,4 +80,4 @@ export const pairsResponseSchema = z.object({
 });
 
 export type MoonshotPair = z.infer<typeof moonshotPairSchema>;
-export type DexScreenerPair = z.infer<typeof pairSchema>;
+export type Pair = z.infer<typeof pairSchema>;
