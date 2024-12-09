@@ -1,4 +1,5 @@
 import { logger } from "$/utils/logger";
+import { autoRetry } from "@grammyjs/auto-retry";
 import { envConfig } from "env";
 import { Bot, GrammyError, HttpError, webhookCallback } from "grammy";
 import { Hono } from "hono";
@@ -9,6 +10,14 @@ const app = new Hono();
 app.get("/", (c) => {
 	return c.json({ message: "Hello from Chuckbot!" });
 });
+
+// Transformers
+bot.api.config.use(
+	autoRetry({
+		maxRetryAttempts: 1, // Retry only once
+		maxDelaySeconds: 5, // Max delay of 5 seconds
+	}),
+);
 
 // Long polling in development
 if (envConfig.NODE_ENV === "development") {
