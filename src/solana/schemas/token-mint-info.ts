@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { solanaBase58AddressSchema } from "./solana";
 
-const tokenMintSourceSchema = z.enum(["MOONSHOT", "PUMPFUN", "DEFAULT"]);
+export const tokenMintSourceSchema = z.enum(["MOONSHOT", "PUMPFUN", "DEFAULT"]);
 
 export const tokenMintInfoSchema = z.object({
 	mintSource: tokenMintSourceSchema,
