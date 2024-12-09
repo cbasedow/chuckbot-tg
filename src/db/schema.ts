@@ -100,6 +100,9 @@ export const insertRefLinkSchema = createInsertSchema(refLinks);
 export type DBUser = z.infer<typeof userSchema>;
 export type NewDBUser = z.infer<typeof insertUserSchema>;
 export type DBGroup = z.infer<typeof groupSchema>;
+export type DBGroupWithRefLinks = DBGroup & {
+	refLinks: DBRefLinkWithUser[] | null;
+};
 export type NewDBGroup = z.infer<typeof insertGroupSchema>;
 export type DBRefLinkPlatform = z.infer<typeof refLinkPlatformSchema>;
 export type DBRefLink = z.infer<typeof refLinkSchema>;
