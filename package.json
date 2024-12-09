@@ -22,6 +22,7 @@
 		"bignumber.js": "^9.1.2",
 		"bs58": "^6.0.0",
 		"fastpriorityqueue": "^0.7.5",
+		"grammy": "^1.33.0",
 		"hono": "^4.6.13",
 		"neverthrow": "^8.1.1",
 		"pino": "^9.5.0",
