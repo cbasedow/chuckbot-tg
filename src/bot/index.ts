@@ -1,15 +1,20 @@
 import { logger } from "$/utils/logger";
 import { autoRetry } from "@grammyjs/auto-retry";
+import { hydrateReply } from "@grammyjs/parse-mode";
 import { envConfig } from "env";
 import { Bot, GrammyError, HttpError, webhookCallback } from "grammy";
 import { Hono } from "hono";
+import type { MyContext } from "./types";
 
-const bot = new Bot(envConfig.BOT_TOKEN);
+const bot = new Bot<MyContext>(envConfig.BOT_TOKEN);
 const app = new Hono();
 
 app.get("/", (c) => {
 	return c.json({ message: "Hello from Chuckbot!" });
 });
+
+// Middlewares
+bot.use(hydrateReply);
 
 // Transformers
 bot.api.config.use(
