@@ -5,6 +5,7 @@ import { hydrateReply } from "@grammyjs/parse-mode";
 import { envConfig } from "env";
 import { Bot, GrammyError, HttpError, webhookCallback } from "grammy";
 import { Hono } from "hono";
+import { ensureDBData } from "./middleware/ensure-db-data";
 import type { MyContext } from "./types";
 
 const bot = new Bot<MyContext>(envConfig.BOT_TOKEN);
@@ -15,6 +16,7 @@ app.get("/", (c) => {
 });
 
 // Middlewares
+bot.use(ensureDBData);
 bot.use(hydrateReply);
 bot.use(commands());
 
