@@ -19,6 +19,7 @@
 	},
 	"trustedDependencies": ["@biomejs/biome"],
 	"dependencies": {
+		"@grammyjs/auto-retry": "^2.0.2",
 		"bignumber.js": "^9.1.2",
 		"bs58": "^6.0.0",
 		"fastpriorityqueue": "^0.7.5",
