@@ -8,6 +8,9 @@ export const BIRDEYE_BASE_HEADERS = {
 	"x-chain": "solana",
 } as const;
 
+//* DexScreener
+export const DEXSCREENER_API_URL = "https://api.dexscreener.com";
+
 //* Helius RPC
 export const HELIUS_RPC_URL = `https://mainnet.helius-rpc.com/?api-key=${envConfig.HELIUS_API_KEY}`;
 export const HELIUS_RPC_BASE_REQUEST = {
