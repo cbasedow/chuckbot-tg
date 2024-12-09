@@ -21,6 +21,7 @@ export const uiAdvancedTokenInfoSchema = z.object({
 	logoUrl: z.string().url().nullable(),
 	source: tokenMintSourceSchema,
 	relativeAgeString: z.string().min(1),
+	migratedRelativeAgeString: z.string().min(1).nullable(),
 	poolName: z.string().min(1),
 	isFreezable: z.boolean(),
 	isMintable: z.boolean(),

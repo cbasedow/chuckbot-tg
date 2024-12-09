@@ -13,6 +13,7 @@ export const defaultTokenMetricsSchema = z.object({
 
 export const dexscreenerTokenMetricsSchema = defaultTokenMetricsSchema.extend({
 	quoteTokenAddress: solanaBase58AddressSchema,
+	pairCreatedAt: z.number().min(0),
 	poolName: z.union([z.string().min(1), z.literal("moonshot")]),
 	poolAddress: solanaBase58AddressSchema,
 	volume1hUsdBn: bigNumberSchema,

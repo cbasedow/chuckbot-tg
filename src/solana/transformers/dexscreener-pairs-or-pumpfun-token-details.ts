@@ -21,6 +21,7 @@ export const extractDexscreenerMetrics = (pairs: Pair[]): Result<DexScreenerToke
 	const dexscreenerMetrics: DexScreenerTokenMetrics = {
 		poolName: mainPair.dexId,
 		poolAddress: mainPair.pairAddress,
+		pairCreatedAt: mainPair.pairCreatedAt / 1000,
 		baseTokenAddress: mainPair.baseToken.address,
 		quoteTokenAddress: mainPair.quoteToken.address,
 		priceSolBn: new BigNumber(mainPair.priceNative),

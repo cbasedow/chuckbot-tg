@@ -21,6 +21,13 @@ export const formatToUIAdvancedTokenInfo = (
 
 	const dexscreenerMetrics = isDexscreenerMetrics(metrics);
 
+	// If the token is default and a dexscreener metrics, we use pairCreatedAt as the actual age
+	const actualAge = dexscreenerMetrics && mintInfo.mintSource === "DEFAULT" ? metrics.pairCreatedAt : mintInfo.mintedAt;
+
+	// If pool name is moonshot or pumpfun, it has not been migrated to a new DEX pool
+	const hasMigrated = metrics.poolName !== "moonshot" && metrics.poolName !== "pumpfun";
+	const migratedAge = hasMigrated && dexscreenerMetrics ? metrics.pairCreatedAt : null;
+
 	const uiAth = allTimeHighPriceInfo
 		? {
 				uiMcapUsd: formatCompactUsd(
@@ -44,7 +51,8 @@ export const formatToUIAdvancedTokenInfo = (
 		symbol: fullMetadata.symbol,
 		logoUrl: fullMetadata.logoUrl,
 		source: mintInfo.mintSource,
-		relativeAgeString: formatRelativeAge(mintInfo.mintedAt),
+		relativeAgeString: formatRelativeAge(actualAge),
+		migratedRelativeAgeString: migratedAge ? formatRelativeAge(migratedAge) : null,
 		poolName: metrics.poolName,
 		isFreezable: fullMetadata.isFreezable,
 		isMintable: fullMetadata.isMintable,
