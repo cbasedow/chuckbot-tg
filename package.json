@@ -8,7 +8,11 @@
 		"start": "bun src/bot/index.ts",
 		"typecheck": "tsc --noEmit",
 		"lint": "biome lint --error-on-warnings",
-		"check": "biome check --write"
+		"check": "biome check --write",
+		"db:push": "bunx drizzle-kit push",
+		"db:generate": "bunx drizzle-kit generate",
+		"db:migrate": "bunx drizzle-kit migrate",
+		"db:studio": "bunx drizzle-kit studio"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
