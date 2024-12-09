@@ -3,7 +3,7 @@ import type BigNumber from "bignumber.js";
 import type { ResultAsync } from "neverthrow";
 import type { UITokenHoldersInfo } from "../schemas/ui-token-holders-info";
 import { extractUITokenHoldersInfo } from "../transformers/token-holders-account-info";
-import { fetchTokenHoldersAccountsInfo } from "./solana-rpc";
+import { fetchTokenHoldersAccountInfo } from "./solana-rpc";
 
 type FetchUITokenHoldersInfoParams = {
 	tokenAddress: string;
@@ -25,7 +25,7 @@ export const fetchUITokenHoldersInfo = ({
 	bondingCurveAddress,
 	circulatingSupplyBn,
 }: FetchUITokenHoldersInfoParams): ResultAsync<UITokenHoldersInfo, Error> => {
-	return fetchTokenHoldersAccountsInfo(tokenAddress)
+	return fetchTokenHoldersAccountInfo(tokenAddress)
 		.andThen((holdersAccountInfo) => {
 			return extractUITokenHoldersInfo({
 				holdersAccountInfo,
