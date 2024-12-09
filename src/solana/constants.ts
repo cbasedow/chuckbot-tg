@@ -21,6 +21,9 @@ export const HELIUS_RPC_BASE_REQUEST = {
 //* Helius Parse Transactions API
 export const HELIUS_PARSE_TXNS_URL = `https://api.helius.xyz/v0/transactions?api-key=${envConfig.HELIUS_API_KEY}&commitment=confirmed`;
 
+//* PumpFun API
+export const PUMPFUN_API_URL = "https://frontend-api.pump.fun";
+
 //* Solana
 export const SOLANA_BASE58_ADDRESS_REGEX = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
 
