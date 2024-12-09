@@ -19,6 +19,7 @@
 	},
 	"trustedDependencies": ["@biomejs/biome"],
 	"dependencies": {
+		"bignumber.js": "^9.1.2",
 		"bs58": "^6.0.0",
 		"neverthrow": "^8.1.1",
 		"pino": "^9.5.0",
