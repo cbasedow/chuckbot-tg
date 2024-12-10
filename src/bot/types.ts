@@ -12,4 +12,6 @@ type DatabaseFlavor = {
 };
 
 export type MyContext = ConversationFlavor<ParseModeFlavor<Context & CommandsFlavor & DatabaseFlavor>>;
-export type MyConversation = Conversation<MyContext, MyContext>;
+// My conversation context must not have ConversationFlavor
+export type MyConversationContext = ParseModeFlavor<Context & DatabaseFlavor>;
+export type MyConversation = Conversation<MyContext, MyConversationContext>;
