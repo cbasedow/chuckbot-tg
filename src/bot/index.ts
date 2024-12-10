@@ -1,6 +1,7 @@
 import { logger } from "$/utils/logger";
 import { autoRetry } from "@grammyjs/auto-retry";
 import { commands } from "@grammyjs/commands";
+import { conversations } from "@grammyjs/conversations";
 import { hydrateReply } from "@grammyjs/parse-mode";
 import { envConfig } from "env";
 import { Bot, GrammyError, HttpError, webhookCallback } from "grammy";
@@ -19,6 +20,7 @@ app.get("/", (c) => {
 bot.use(ensureDBData);
 bot.use(hydrateReply);
 bot.use(commands());
+bot.use(conversations());
 
 // Transformers
 bot.api.config.use(
