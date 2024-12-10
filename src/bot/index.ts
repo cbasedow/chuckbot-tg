@@ -17,10 +17,10 @@ app.get("/", (c) => {
 });
 
 // Middlewares
-bot.use(ensureDBData);
 bot.use(hydrateReply);
 bot.use(commands());
-bot.use(conversations());
+bot.use(conversations({ plugins: [hydrateReply] }));
+bot.use(ensureDBData);
 
 // Transformers
 bot.api.config.use(
