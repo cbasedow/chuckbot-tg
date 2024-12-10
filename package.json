@@ -1,44 +1,44 @@
 {
-  "name": "chuckbot-tg",
-  "module": "src/bot/index.ts",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "dev": "bun --watch src/bot/index.ts",
-    "start": "bun src/bot/index.ts",
-    "typecheck": "tsc --noEmit",
-    "lint": "biome lint --error-on-warnings",
-    "check": "biome check --write",
-    "db:push": "bunx drizzle-kit push",
-    "db:generate": "bunx drizzle-kit generate",
-    "db:migrate": "bunx drizzle-kit migrate",
-    "db:studio": "bunx drizzle-kit studio"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@types/bun": "latest",
-    "drizzle-kit": "^0.30.0"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "trustedDependencies": ["@biomejs/biome", "@grammyjs/conversations", "esbuild"],
-  "dependencies": {
-    "@grammyjs/auto-retry": "^2.0.2",
-    "@grammyjs/commands": "^1.0.3",
-    "@grammyjs/conversations": "github:grammyjs/conversations",
-    "@grammyjs/parse-mode": "^1.10.0",
-    "bignumber.js": "^9.1.2",
-    "bs58": "^6.0.0",
-    "drizzle-orm": "^0.38.0",
-    "drizzle-zod": "^0.6.0",
-    "fastpriorityqueue": "^0.7.5",
-    "grammy": "^1.33.0",
-    "hono": "^4.6.13",
-    "neverthrow": "^8.1.1",
-    "pino": "^9.5.0",
-    "pino-pretty": "^13.0.0",
-    "postgres": "^3.4.5",
-    "zod": "^3.23.8"
-  }
+	"name": "chuckbot-tg",
+	"module": "src/bot/index.ts",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"dev": "bun --watch src/bot/index.ts",
+		"start": "bun src/bot/index.ts",
+		"typecheck": "tsc --noEmit",
+		"lint": "biome lint --error-on-warnings",
+		"check": "biome check --write",
+		"db:push": "bunx drizzle-kit push",
+		"db:generate": "bunx drizzle-kit generate",
+		"db:migrate": "bunx drizzle-kit migrate",
+		"db:studio": "bunx drizzle-kit studio"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@types/bun": "latest",
+		"drizzle-kit": "^0.30.0"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"trustedDependencies": ["@biomejs/biome", "@grammyjs/conversations", "esbuild"],
+	"dependencies": {
+		"@grammyjs/auto-retry": "^2.0.2",
+		"@grammyjs/commands": "^1.0.3",
+		"@grammyjs/conversations": "github:grammyjs/conversations",
+		"@grammyjs/parse-mode": "^1.10.0",
+		"bignumber.js": "^9.1.2",
+		"bs58": "^6.0.0",
+		"drizzle-orm": "^0.38.0",
+		"drizzle-zod": "^0.6.0",
+		"fastpriorityqueue": "^0.7.5",
+		"grammy": "^1.33.0",
+		"hono": "^4.6.13",
+		"neverthrow": "^8.1.1",
+		"pino": "^9.5.0",
+		"pino-pretty": "^13.0.0",
+		"postgres": "^3.4.5",
+		"zod": "^3.23.8"
+	}
 }
