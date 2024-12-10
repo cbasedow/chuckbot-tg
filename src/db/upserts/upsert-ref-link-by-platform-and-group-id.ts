@@ -20,8 +20,8 @@ export const upsertRefLinkByPlatformAndGroupId = (newRefLink: NewDBRefLink): Res
 			.onConflictDoUpdate({
 				target: [refLinks.platform, refLinks.groupId],
 				set: {
-					url: newRefLink.url,
-					updatedBy: newRefLink.updatedBy,
+					url: validatedRefLink.url,
+					updatedBy: validatedRefLink.updatedBy,
 				},
 			})
 			.then(() => void 0),
