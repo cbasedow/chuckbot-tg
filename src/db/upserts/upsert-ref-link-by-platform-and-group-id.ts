@@ -21,6 +21,7 @@ export const upsertRefLinkByPlatformAndGroupId = (newRefLink: NewDBRefLink): Res
 				target: [refLinks.platform, refLinks.groupId],
 				set: {
 					url: validatedRefLink.url,
+					updatedAt: validatedRefLink.updatedAt,
 					updatedBy: validatedRefLink.updatedBy,
 				},
 			})
