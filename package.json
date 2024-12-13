@@ -22,10 +22,10 @@
 	"peerDependencies": {
 		"typescript": "^5.0.0"
 	},
-	"trustedDependencies": ["@biomejs/biome", "@grammyjs/conversations", "esbuild"],
+	"trustedDependencies": ["@biomejs/biome", "@grammyjs/commands", "@grammyjs/conversations", "esbuild"],
 	"dependencies": {
 		"@grammyjs/auto-retry": "^2.0.2",
-		"@grammyjs/commands": "^1.0.3",
+		"@grammyjs/commands": "grammyjs/commands#ctx-dot-match",
 		"@grammyjs/conversations": "github:grammyjs/conversations",
 		"@grammyjs/menu": "^1.3.0",
 		"@grammyjs/parse-mode": "^1.10.0",
