@@ -8,12 +8,11 @@ import { envConfig } from "env";
 import { Bot, GrammyError, HttpError, webhookCallback } from "grammy";
 import { Hono } from "hono";
 import { adminCommands } from "./commands/admin";
+import { REF_PLATFORMS } from "./constants";
 import { manageRef } from "./conversations/manage-ref";
 import { createCurrRefLinkDetailsMenu, manageRefLinksMenu, refLinkPlatformsMenu } from "./menus/manage-ref-links";
 import { ensureDBData } from "./middleware/ensure-db-data";
 import type { MyContext } from "./types";
-
-const REF_PLATFORMS: DBRefLinkPlatform[] = ["bonk", "bullx", "maestro", "photon", "shuriken", "trojan"];
 
 const bot = new Bot<MyContext>(envConfig.BOT_TOKEN);
 const app = new Hono();

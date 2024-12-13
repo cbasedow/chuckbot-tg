@@ -4,11 +4,10 @@ import { formatRelativeAge } from "$/utils/format-relative-age-string";
 import { Menu } from "@grammyjs/menu";
 import { type FormattedString, bold, code, fmt, italic } from "@grammyjs/parse-mode";
 import { formatRefLinksMessage } from "../commands/admin/refs";
-import { EMOJIS } from "../constants";
+import { EMOJIS, REF_PLATFORMS } from "../constants";
 import type { MyContext } from "../types";
 import { formatFormattedStrings } from "../utils/format-formatted-strings";
 
-const REF_PLATFORMS: DBRefLinkPlatform[] = ["bonk", "bullx", "maestro", "photon", "shuriken", "trojan"];
 const MAX_PLATFORMS_PER_ROW = 3;
 
 export const manageRefLinksMenu = new Menu<MyContext>("manage-ref-links-menu").submenu(

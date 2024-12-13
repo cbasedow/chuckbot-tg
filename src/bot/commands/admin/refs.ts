@@ -1,13 +1,11 @@
-import { EMOJIS } from "$/bot/constants";
+import { EMOJIS, REF_PLATFORMS } from "$/bot/constants";
 import { manageRefLinksMenu } from "$/bot/menus/manage-ref-links";
 import type { MyContext } from "$/bot/types";
 import { formatFormattedStrings } from "$/bot/utils/format-formatted-strings";
-import type { DBGroupWithRefLinks, DBRefLinkPlatform } from "$/db/schema";
+import type { DBGroupWithRefLinks } from "$/db/schema";
 import { capitalizeFirstLetter } from "$/utils/capitalize-first-letter";
 import { Command } from "@grammyjs/commands";
 import { type FormattedString, bold, code, fmt, italic } from "@grammyjs/parse-mode";
-
-const REF_PLATFORMS: DBRefLinkPlatform[] = ["bonk", "bullx", "maestro", "photon", "shuriken", "trojan"];
 
 export const refsCommand = new Command<MyContext>("refs", "View and manage group ref links", async (ctx) => {
 	const messageId = ctx.msgId;

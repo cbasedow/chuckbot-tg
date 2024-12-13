@@ -1,3 +1,5 @@
+import type { DBRefLinkPlatform } from "$/db/schema";
+
 export const EMOJIS = {
 	ARROW_LEFT: "⬅️",
 	ARROW_RIGHT: "➡️",
@@ -13,3 +15,5 @@ export const EMOJIS = {
 	POINT_DOWN: "👇",
 	STOP_SIGN: "🛑",
 };
+
+export const REF_PLATFORMS: DBRefLinkPlatform[] = ["bonk", "bullx", "maestro", "photon", "shuriken", "trojan"];
