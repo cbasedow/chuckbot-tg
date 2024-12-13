@@ -27,6 +27,7 @@
 		"@grammyjs/auto-retry": "^2.0.2",
 		"@grammyjs/commands": "^1.0.3",
 		"@grammyjs/conversations": "github:grammyjs/conversations",
+		"@grammyjs/menu": "^1.3.0",
 		"@grammyjs/parse-mode": "^1.10.0",
 		"bignumber.js": "^9.1.2",
 		"bs58": "^6.0.0",
