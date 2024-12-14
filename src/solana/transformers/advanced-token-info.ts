@@ -62,6 +62,7 @@ export const formatToUIAdvancedTokenInfo = (
 		uiPriceChange1hPercent: dexscreenerMetrics ? metrics.priceChange1hPercent.toFixed(2) : null,
 		uiMcapUsd: formatCompactUsd(metrics.mcapUsdBn.toNumber()),
 		uiAllTimeHigh: uiAth,
+		uiLiquidityUsd: metrics.liquidityUsdBn ? formatCompactUsd(metrics.liquidityUsdBn.toNumber()) : null,
 		uiVolume1h,
 		uiHoldersInfo,
 		devAddress: mintInfo.devAddress,

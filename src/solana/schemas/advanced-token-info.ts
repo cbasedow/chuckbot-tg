@@ -36,6 +36,7 @@ export const uiAdvancedTokenInfoSchema = z.object({
 			relativeAgeString: z.string().min(1),
 		})
 		.nullable(),
+	uiLiquidityUsd: z.string().min(1).nullable(),
 	uiVolume1h: z
 		.object({
 			uiUsd: z.string().min(1),
