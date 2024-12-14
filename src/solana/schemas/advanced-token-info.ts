@@ -45,7 +45,6 @@ export const uiAdvancedTokenInfoSchema = z.object({
 		})
 		.nullable(),
 	uiHoldersInfo: uiTokenHoldersInfoSchema,
-	devAddress: solanaBase58AddressSchema,
 });
 
 export type AdvancedTokenInfo = z.infer<typeof advancedTokenInfoSchema>;

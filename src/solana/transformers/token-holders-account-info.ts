@@ -95,9 +95,15 @@ export const extractUITokenHoldersInfo = ({
 		};
 	});
 
+	const uiDevHolder: UITokenHolder = {
+		address: devAddress,
+		uiHolderPercent: devHolderPercentBn.toFixed(2),
+		solscanUrl: `${SOLSCAN_ACCOUNT_URL}/${devAddress}`,
+	};
+
 	const uiTokenHoldersInfo: UITokenHoldersInfo = {
 		uiT10HoldersPercent: t10HoldersPercentBn.toFixed(2),
-		uiDevHolderPercent: devHolderPercentBn.toFixed(2),
+		uiDevHolder,
 		uiT5Holders,
 	};
 

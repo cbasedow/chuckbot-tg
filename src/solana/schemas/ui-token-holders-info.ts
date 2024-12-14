@@ -15,7 +15,7 @@ export const uiTokenHolderSchema = z.object({
 
 export const uiTokenHoldersInfoSchema = z.object({
 	uiT10HoldersPercent: z.string().min(1),
-	uiDevHolderPercent: z.string().min(1),
+	uiDevHolder: uiTokenHolderSchema,
 	uiT5Holders: uiTokenHolderSchema.array().max(5), // We will display the top 5 holders in Telegram UI
 });
 

@@ -65,7 +65,6 @@ export const formatToUIAdvancedTokenInfo = (
 		uiLiquidityUsd: metrics.liquidityUsdBn ? formatCompactUsd(metrics.liquidityUsdBn.toNumber()) : null,
 		uiVolume1h,
 		uiHoldersInfo,
-		devAddress: mintInfo.devAddress,
 	};
 
 	return validateZodSchema(uiAdvancedTokenInfo, uiAdvancedTokenInfoSchema, "UI Advanced token info");
