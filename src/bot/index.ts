@@ -1,4 +1,3 @@
-import type { DBRefLinkPlatform } from "$/db/schema";
 import { logger } from "$/utils/logger";
 import { autoRetry } from "@grammyjs/auto-retry";
 import { commands } from "@grammyjs/commands";
@@ -8,6 +7,7 @@ import { envConfig } from "env";
 import { Bot, GrammyError, HttpError, webhookCallback } from "grammy";
 import { Hono } from "hono";
 import { adminCommands } from "./commands/admin";
+import { userCommands } from "./commands/user";
 import { REF_PLATFORMS } from "./constants";
 import { manageRef } from "./conversations/manage-ref";
 import { createCurrRefLinkDetailsMenu, manageRefLinksMenu, refLinkPlatformsMenu } from "./menus/manage-ref-links";
@@ -47,6 +47,7 @@ bot.use(manageRefLinksMenu);
 
 // Commands
 bot.use(adminCommands);
+bot.use(userCommands);
 
 // Long polling in development
 if (envConfig.NODE_ENV === "development") {
