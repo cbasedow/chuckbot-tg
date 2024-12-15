@@ -7,7 +7,7 @@ import { z } from "zod";
 import { db } from "..";
 
 const updateGroupAddressListenerSchema = z.object({
-	groupId: z.number().min(1),
+	groupId: z.number().int().negative(), // Telegram Group IDs are negative numbers
 	isListenerEnabled: z.boolean(),
 });
 
