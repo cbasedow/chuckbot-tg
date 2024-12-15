@@ -1,5 +1,5 @@
 import { relations, sql } from "drizzle-orm";
-import { bigint, pgEnum, pgTable, serial, timestamp, uniqueIndex, varchar } from "drizzle-orm/pg-core";
+import { bigint, boolean, pgEnum, pgTable, serial, timestamp, uniqueIndex, varchar } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -10,6 +10,7 @@ export const users = pgTable(
 		id: bigint("id", { mode: "number" }).primaryKey(),
 		username: varchar("username", { length: 32 }),
 		createdAt: timestamp("created_at").notNull().defaultNow(),
+		addressListenerEnabled: boolean("address_listener_enabled").notNull().default(false),
 	},
 	(t) => [uniqueIndex("tg_username_idx").on(t.username).where(sql`username IS NOT NULL`)],
 );
@@ -18,6 +19,7 @@ export const groups = pgTable("tg_groups", {
 	id: bigint("id", { mode: "number" }).primaryKey(),
 	name: varchar("name", { length: 255 }).notNull(),
 	createdAt: timestamp("created_at").notNull().defaultNow(),
+	addressListenerEnabled: boolean("address_listener_enabled").notNull().default(false),
 });
 
 export const refLinkPlatformEnum = pgEnum("ref_link_platform", [
