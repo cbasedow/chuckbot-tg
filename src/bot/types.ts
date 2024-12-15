@@ -2,7 +2,7 @@ import type { DBGroupWithRefLinks, DBUser } from "$/db/schema";
 import type { CommandsFlavor } from "@grammyjs/commands";
 import type { Conversation, ConversationFlavor, ConversationMenu } from "@grammyjs/conversations";
 import type { ParseModeFlavor } from "@grammyjs/parse-mode";
-import type { Context } from "grammy";
+import type { Bot, Context } from "grammy";
 
 type DatabaseFlavor = {
 	dbData: {
@@ -12,6 +12,7 @@ type DatabaseFlavor = {
 };
 
 export type MyContext = ConversationFlavor<ParseModeFlavor<Context & CommandsFlavor & DatabaseFlavor>>;
+export type MyBot = Bot<MyContext>;
 // My conversation context must not have ConversationFlavor
 export type MyConversationContext = ParseModeFlavor<Context & DatabaseFlavor>;
 export type MyConversation = Conversation<MyContext, MyConversationContext>;
