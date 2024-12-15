@@ -1,9 +1,9 @@
-import { db } from "..";
-import { eq, sql } from "drizzle-orm";
 import { ensureError } from "$/utils/ensure-error";
 import { validateZodSchema } from "$/utils/validate-zod-schema";
+import { eq, sql } from "drizzle-orm";
+import { ResultAsync, errAsync } from "neverthrow";
 import { z } from "zod";
-import { errAsync, ResultAsync } from "neverthrow";
+import { db } from "..";
 import { users } from "../schema";
 
 const userIdSchema = z.number().positive();

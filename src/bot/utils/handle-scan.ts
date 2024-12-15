@@ -2,6 +2,7 @@ import { EMOJIS } from "$/bot/constants";
 import type { MyContext } from "$/bot/types";
 import { formatFormattedStrings } from "$/bot/utils/format-formatted-strings";
 import type { DBGroupWithRefLinks, DBRefLink, DBUser } from "$/db/schema";
+import { updateUserTokenScanCount } from "$/db/updates/update-user-token-scan-count";
 import type { UIAdvancedTokenInfo } from "$/solana/schemas/advanced-token-info";
 import type { TokenMintSource } from "$/solana/schemas/token-mint-info";
 import { fetchUIAdvancedTokenInfo } from "$/solana/services/ui-advanced-token-info";
@@ -50,11 +51,22 @@ export const handleScan = async (ctx: MyContext, params: HandleScanParams) => {
 
 	const groupRefLinks = group?.refLinks ?? [];
 
-	await fetchUIAdvancedTokenInfo(address).match(
+	return await fetchUIAdvancedTokenInfo(address).match(
 		async (uiAdvancedTokenInfo) => {
+			// Update the user's token scan count in the database
+			await updateUserTokenScanCount(user.id).match(
+				() => {
+					logger.debug(`Updated user ${user.username} token scan count`);
+				},
+				(error) => {
+					logger.error(`Failed to update user ${user.username} token scan count: ${error.message}`);
+				},
+			);
+
+			// Still proceed replying to the user even if the update count fails
 			const formattedAdvancedTokenInfo = formatAdvancedTokenInfo(uiAdvancedTokenInfo, groupRefLinks);
 
-			await ctx.replyFmt(formattedAdvancedTokenInfo, {
+			return await ctx.replyFmt(formattedAdvancedTokenInfo, {
 				link_preview_options: {
 					is_disabled: true,
 				},
@@ -69,7 +81,9 @@ export const handleScan = async (ctx: MyContext, params: HandleScanParams) => {
 		},
 		async (error) => {
 			logger.error(`Failed to scan token ${address}: ${error.message}`);
-			await ctx.replyFmt(fmt`${EMOJIS.RED_X} An error occured scanning token ${address}. Please try again later`);
+			return await ctx.replyFmt(
+				fmt`${EMOJIS.RED_X} An error occured scanning token ${address}. Please try again later`,
+			);
 		},
 	);
 };
