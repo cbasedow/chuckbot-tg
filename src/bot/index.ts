@@ -12,6 +12,7 @@ import { REF_PLATFORMS } from "./constants";
 import { manageRef } from "./conversations/manage-ref";
 import { groupAddressListenerMenu } from "./menus/group-address-listener";
 import { createCurrRefLinkDetailsMenu, manageRefLinksMenu, refLinkPlatformsMenu } from "./menus/manage-ref-links";
+import { userAddressListenerMenu } from "./menus/user-address-listener";
 import { ensureDBData } from "./middleware/ensure-db-data";
 import type { MyContext } from "./types";
 
@@ -45,11 +46,13 @@ for (const platform of REF_PLATFORMS) {
 }
 manageRefLinksMenu.register(refLinkPlatformsMenu);
 bot.use(manageRefLinksMenu);
+
 bot.use(groupAddressListenerMenu);
+bot.use(userAddressListenerMenu);
 
 // Commands
-bot.use(adminCommands);
 bot.use(userCommands);
+bot.use(adminCommands);
 
 // Long polling in development
 if (envConfig.NODE_ENV === "development") {
