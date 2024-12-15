@@ -26,6 +26,7 @@ export const PUMPFUN_API_URL = "https://frontend-api.pump.fun";
 
 //* Solana
 export const SOLANA_BASE58_ADDRESS_REGEX = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
+export const GLOBAL_SOLANA_BASE58_ADDRESS_REGEX = /[1-9A-HJ-NP-Za-km-z]{32,44}/gi;
 
 export const SOLANA_PROGRAM_IDS = {
 	METAPLEX: "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s",
