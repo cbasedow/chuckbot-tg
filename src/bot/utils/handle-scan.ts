@@ -2,6 +2,7 @@ import { EMOJIS } from "$/bot/constants";
 import type { MyContext } from "$/bot/types";
 import { formatFormattedStrings } from "$/bot/utils/format-formatted-strings";
 import type { DBGroupWithRefLinks, DBRefLink, DBUser } from "$/db/schema";
+import { updateGroupTokenScanCount } from "$/db/updates/update-group-token-scan-count";
 import { updateUserTokenScanCount } from "$/db/updates/update-user-token-scan-count";
 import type { UIAdvancedTokenInfo } from "$/solana/schemas/advanced-token-info";
 import type { TokenMintSource } from "$/solana/schemas/token-mint-info";
@@ -9,6 +10,7 @@ import { fetchUIAdvancedTokenInfo } from "$/solana/services/ui-advanced-token-in
 import { capitalizeFirstLetter } from "$/utils/capitalize-first-letter";
 import { logger } from "$/utils/logger";
 import { type FormattedString, bold, code, fmt, italic, link } from "@grammyjs/parse-mode";
+import { ResultAsync } from "neverthrow";
 
 type BaseRefLink = Pick<DBRefLink, "platform" | "url">;
 
@@ -53,13 +55,16 @@ export const handleScan = async (ctx: MyContext, params: HandleScanParams) => {
 
 	return await fetchUIAdvancedTokenInfo(address).match(
 		async (uiAdvancedTokenInfo) => {
-			// Update the user's token scan count in the database
-			await updateUserTokenScanCount(user.id).match(
+			// Update the token scan counts in the database
+			await ResultAsync.combine([
+				updateUserTokenScanCount(user.id),
+				...(group?.id ? [updateGroupTokenScanCount(group.id)] : []),
+			]).match(
 				() => {
-					logger.debug(`Updated user ${user.username} token scan count`);
+					logger.debug(`Updated scan counts - User: ${user.username}${group ? `, Group: ${group.id}` : ""}`);
 				},
 				(error) => {
-					logger.error(`Failed to update user ${user.username} token scan count: ${error.message}`);
+					logger.error(`Failed to update scan counts: ${error.message}`);
 				},
 			);
 
