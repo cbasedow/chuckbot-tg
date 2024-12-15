@@ -37,11 +37,11 @@ export const groupAddressListenerMenu = new Menu<MyContext>("group-address-liste
 		}
 
 		await ctx.answerCallbackQuery();
-		await ctx.menu.close({ immediate: true });
 
 		return await updatedGroupAddressListener(group.id, enable).match(
 			async () => {
 				logger.debug(`Updated SPL address listener for group ${group.name} to ${enable}`);
+				await ctx.menu.close({ immediate: true });
 				return await ctx.replyFmt(
 					fmt`${EMOJIS.GREEN_CHECK} User ${user.username ?? user.id} ${enable ? "enabled" : "disabled"} SPL address listener for group ${group.name} `,
 				);
