@@ -1,14 +1,14 @@
 import { EMOJIS } from "$/bot/constants";
 import type { MyContext } from "$/bot/types";
 import { handleScan } from "$/bot/utils/handle-scan";
-import { GLOBAL_SOLANA_BASE58_ADDRESS_REGEX } from "$/solana/constants";
+import { SOLANA_BASE58_ADDRESS_REGEX } from "$/solana/constants";
 import { Command } from "@grammyjs/commands";
 import { fmt } from "@grammyjs/parse-mode";
 
 export const scanCommand = new Command<MyContext>("scan", "Scan a SPL token <address>", async (ctx) => {
 	const address = ctx.match;
 
-	if (!(address && GLOBAL_SOLANA_BASE58_ADDRESS_REGEX.test(address))) {
+	if (!SOLANA_BASE58_ADDRESS_REGEX.test(address)) {
 		return await ctx.replyFmt(fmt`${EMOJIS.RED_X} Invalid address`);
 	}
 
@@ -24,7 +24,7 @@ export const scanCommand = new Command<MyContext>("scan", "Scan a SPL token <add
 		return await ctx.replyFmt(fmt`${EMOJIS.RED_X} An error occured getting group data. Please try again later`);
 	}
 
-	await handleScan(ctx, {
+	return handleScan(ctx, {
 		address,
 		user,
 		group,
