@@ -10,6 +10,7 @@ import { adminCommands } from "./commands/admin";
 import { userCommands } from "./commands/user";
 import { REF_PLATFORMS } from "./constants";
 import { manageRef } from "./conversations/manage-ref";
+import { onSplTokenAddress } from "./events/on-spl-token-address";
 import { groupAddressListenerMenu } from "./menus/group-address-listener";
 import { createCurrRefLinkDetailsMenu, manageRefLinksMenu, refLinkPlatformsMenu } from "./menus/manage-ref-links";
 import { userAddressListenerMenu } from "./menus/user-address-listener";
@@ -53,6 +54,9 @@ bot.use(userAddressListenerMenu);
 // Commands
 bot.use(userCommands);
 bot.use(adminCommands);
+
+// Events
+onSplTokenAddress(bot);
 
 // Long polling in development
 if (envConfig.NODE_ENV === "development") {
