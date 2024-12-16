@@ -8,6 +8,7 @@ export const envSchema = z.object({
 	BOT_USERNAME: z.string().min(1),
 	DATABASE_URL: z.string().min(1),
 	FEEDBACK_CHANNEL_ID: z.string().min(1),
+	PROD_DOMAIN_URL: z.string().min(1),
 	//! TODO: Add more env variables here
 });
 
