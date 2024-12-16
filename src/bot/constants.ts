@@ -15,6 +15,7 @@ export const EMOJIS = {
 	GEM: "💎",
 	GRAD_CAP: "🎓",
 	GREEN_CHECK: "✅",
+	HAND_WAVE: "👋",
 	HEAR: "🦻",
 	LABEL: "🏷",
 	LINK: "🔗",
