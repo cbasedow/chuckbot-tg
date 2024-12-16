@@ -9,6 +9,7 @@ import { Hono } from "hono";
 import { adminCommands } from "./commands/admin";
 import { userCommands } from "./commands/user";
 import { REF_PLATFORMS } from "./constants";
+import { feedbackConversation } from "./conversations/feedback";
 import { manageRef } from "./conversations/manage-ref";
 import { onSplTokenAddress } from "./events/on-spl-token-address";
 import { groupAddressListenerMenu } from "./menus/group-address-listener";
@@ -40,6 +41,7 @@ bot.api.config.use(
 
 // Conversations
 bot.use(createConversation(manageRef, "manage-ref"));
+bot.use(createConversation(feedbackConversation, "feedback-conversation"));
 
 // Menus
 for (const platform of REF_PLATFORMS) {
