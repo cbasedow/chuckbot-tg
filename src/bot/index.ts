@@ -71,6 +71,13 @@ if (envConfig.NODE_ENV === "development") {
 	});
 } else {
 	// Webhook in production
+	const endpoint = `${envConfig.PROD_DOMAIN_URL}/webhook`;
+
+	await bot.api.setWebhook(endpoint, {
+		drop_pending_updates: true,
+		allowed_updates: ["chat_member", "message", "my_chat_member", "callback_query"],
+	});
+
 	app.post("/webhook", async (c) => {
 		try {
 			return await webhookCallback(bot, "hono")(c);
