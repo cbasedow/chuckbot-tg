@@ -320,7 +320,7 @@ const transactionErrorSchema = z.string().or(z.record(z.never(), z.never()));
 
 const defaultInstructionSchema = z.object({
 	accounts: solanaBase58AddressSchema.array(),
-	data: z.string().min(1),
+	data: z.string(),
 	programId: z.string().min(1),
 });
 
