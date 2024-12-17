@@ -153,7 +153,7 @@ const createConfirmDeleteRefMenu = (
 									}
 								: undefined),
 						});
-						await conversation.halt();
+						return await conversation.halt();
 					},
 					async (error) => {
 						logger.error(
@@ -171,7 +171,7 @@ const createConfirmDeleteRefMenu = (
 									: undefined),
 							},
 						);
-						await conversation.halt();
+						return await conversation.halt();
 					},
 				);
 			} else {
@@ -287,6 +287,7 @@ const createConfirmSetRefMenu = (
 							}
 						: undefined),
 				});
+				await conversation.halt();
 			} else {
 				await ctx.answerCallbackQuery({
 					text: `Only user ${user.username ?? user.id} can currently cancel setting the ${selectedPlatformLabel} ref link`,
@@ -334,6 +335,7 @@ const createConfirmSetRefMenu = (
 									}
 								: undefined),
 						});
+						return await conversation.halt();
 					},
 					async (error) => {
 						logger.error(`Error upserting ref link for ${selectedPlatformLabel} in group ${group.id}: ${error}`);
@@ -349,7 +351,7 @@ const createConfirmSetRefMenu = (
 									: undefined),
 							},
 						);
-						await conversation.halt();
+						return await conversation.halt();
 					},
 				);
 			} else {
