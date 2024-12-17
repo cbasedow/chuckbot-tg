@@ -92,31 +92,45 @@ export const createCurrRefLinkDetailsMenu = (selectedPlatform: DBRefLinkPlatform
 					});
 				}
 			});
-		}
 
-		range.text(`${EMOJIS.PENCIL} Set`, async (ctx) => {
-			if (ctx.from.id === user.id) {
-				await ctx.answerCallbackQuery();
-				await ctx.menu.close({ immediate: true });
+			range.text(`${EMOJIS.PENCIL} Set`, async (ctx) => {
+				if (ctx.from.id === user.id) {
+					await ctx.answerCallbackQuery();
+					await ctx.menu.close({ immediate: true });
 
-				await ctx.conversation.enter("manage-ref", {
-					selectedPlatform,
-					selectedPlatformLabel,
-					action: "set",
-				});
-			}
-		});
-
-		// Add a row for the back button if the current ref link is set
-		if (currRefLink) {
-			range.row();
-		}
-
-		range.text(`${EMOJIS.ARROW_LEFT} Back`, async (ctx) => {
-			await ctx.editFmtMessageText(formatRefLinksMessage(group), {
-				reply_markup: refLinkPlatformsMenu,
+					await ctx.conversation.enter("manage-ref", {
+						selectedPlatform,
+						selectedPlatformLabel,
+						action: "set",
+					});
+				}
 			});
-		});
+
+			range.row().text(`${EMOJIS.ARROW_LEFT} Back`, async (ctx) => {
+				await ctx.editFmtMessageText(formatRefLinksMessage(group), {
+					reply_markup: refLinkPlatformsMenu,
+				});
+			});
+		} else {
+			range.text(`${EMOJIS.ARROW_LEFT} Back`, async (ctx) => {
+				await ctx.editFmtMessageText(formatRefLinksMessage(group), {
+					reply_markup: refLinkPlatformsMenu,
+				});
+			});
+
+			range.text(`${EMOJIS.PENCIL} Set`, async (ctx) => {
+				if (ctx.from.id === user.id) {
+					await ctx.answerCallbackQuery();
+					await ctx.menu.close({ immediate: true });
+
+					await ctx.conversation.enter("manage-ref", {
+						selectedPlatform,
+						selectedPlatformLabel,
+						action: "set",
+					});
+				}
+			});
+		}
 	});
 };
 
