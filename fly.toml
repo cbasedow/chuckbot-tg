@@ -1,0 +1,29 @@
+# fly.toml app configuration file generated for chuckbot-tg on 2024-12-16T13:37:50-05:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'chuckbot-tg'
+primary_region = 'ewr'
+
+[build]
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1  # Changed from 0 to 1 to keep at least one instance running
+  processes = ['app']
+  max_machines_running = 1  # Added to limit to one instance
+
+[[vm]]
+  memory = '4gb'
+  cpu_kind = 'performance'
+  cpus = 1
+
+# Add this section to prevent multiple instances
+[deploy]
+  strategy = "immediate"
+  max_unavailable = 1
+  max_concurrent_releases = 1
