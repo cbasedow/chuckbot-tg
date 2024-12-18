@@ -24,6 +24,7 @@
 	},
 	"trustedDependencies": ["@biomejs/biome", "@grammyjs/commands", "@grammyjs/conversations", "esbuild"],
 	"dependencies": {
+		"@flydotio/dockerfile": "^0.5.9",
 		"@grammyjs/auto-retry": "^2.0.2",
 		"@grammyjs/commands": "grammyjs/commands#ctx-dot-match",
 		"@grammyjs/conversations": "github:grammyjs/conversations",
