@@ -21,14 +21,14 @@ export const onlyGroupAdmin = (customMessage?: string) => {
 
 		// Allow anonymous admin bots
 		if (ctx.from?.username === "GroupAnonymousBot") {
-			await next();
+			return await next();
 		}
 
 		try {
 			const chatMember = await ctx.getChatMember(ctx.from.id);
 
 			if (chatMember.status === "administrator" || chatMember.status === "creator") {
-				await next();
+				return await next();
 			}
 
 			// Non admin reply message
