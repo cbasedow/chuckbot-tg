@@ -14,21 +14,21 @@ export const onlyGroupAdmin = (customMessage?: string) => {
 
 		const chatType = ctx.chat.type;
 
-		// Allow in channels and private chats
-		if (chatType === "channel" || chatType === "private") {
-			return await next();
+		// Return early message if the chat type is not a group or supergroup
+		if (chatType !== "group" && chatType !== "supergroup") {
+			return await ctx.replyFmt(fmt`${EMOJIS.STOP_SIGN} ${bold("Refs command can only be used in groups")}`);
 		}
 
 		// Allow anonymous admin bots
 		if (ctx.from?.username === "GroupAnonymousBot") {
-			return await next();
+			await next();
 		}
 
 		try {
 			const chatMember = await ctx.getChatMember(ctx.from.id);
 
 			if (chatMember.status === "administrator" || chatMember.status === "creator") {
-				return await next();
+				await next();
 			}
 
 			// Non admin reply message
