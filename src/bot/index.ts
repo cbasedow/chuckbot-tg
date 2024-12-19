@@ -18,7 +18,9 @@ import { userAddressListenerMenu } from "./menus/user-address-listener";
 import { ensureDBData } from "./middleware/ensure-db-data";
 import type { MyContext } from "./types";
 
-const bot = new Bot<MyContext>(envConfig.BOT_TOKEN);
+const BOT_TOKEN = envConfig.NODE_ENV === "development" ? envConfig.DEV_BOT_TOKEN : envConfig.PROD_BOT_TOKEN;
+
+const bot = new Bot<MyContext>(BOT_TOKEN);
 const app = new Hono();
 
 app.get("/", (c) => {
@@ -56,6 +58,9 @@ bot.use(userAddressListenerMenu);
 // Commands
 bot.use(userCommands);
 bot.use(adminCommands);
+
+await userCommands.setCommands(bot);
+await adminCommands.setCommands(bot);
 
 // Events
 onSplTokenAddress(bot);
