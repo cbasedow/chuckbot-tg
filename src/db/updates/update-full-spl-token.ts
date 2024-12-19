@@ -18,7 +18,23 @@ const updateFullSplTokenSchema = z.object({
 	poolAddress: solanaBase58AddressSchema.nullable(),
 	mintInfoExists: z.boolean(),
 	mintInfo: insertTokenMintInfoSchema.nullable(),
-	athPriceInfo: insertAllTimeHighPriceInfoSchema.nullable(),
+	athPriceInfo: z
+		.discriminatedUnion("exists", [
+			z.object({
+				exists: z.literal(false),
+				data: insertAllTimeHighPriceInfoSchema,
+			}),
+			z.object({
+				exists: z.literal(true),
+				data: insertAllTimeHighPriceInfoSchema.extend({
+					// Price and reached at are optional, lastQueryTimeTo is required
+					priceUsd: z.string().min(1).optional(),
+					reachedAtUnix: z.number().min(0).optional(),
+					lastQueryTimeToUnix: z.number().min(0),
+				}),
+			}),
+		])
+		.nullable(),
 });
 type UpdateFullSplToken = z.infer<typeof updateFullSplTokenSchema>;
 
@@ -49,19 +65,14 @@ export const updateFullSplToken = (updatedFullSplToken: UpdateFullSplToken): Res
 
 			await Promise.all([
 				mintInfo && !mintInfoExists ? txn.insert(tokenMintInfo).values(mintInfo) : null,
-				athPriceInfo
+				athPriceInfo?.exists === true
 					? txn
-							.insert(allTimeHighPriceInfo)
-							.values(athPriceInfo)
-							.onConflictDoUpdate({
-								target: allTimeHighPriceInfo.tokenAddress,
-								set: {
-									priceUsd: athPriceInfo.priceUsd,
-									reachedAtUnix: athPriceInfo.reachedAtUnix,
-									lastQueryTimeToUnix: athPriceInfo.lastQueryTimeToUnix,
-								},
-							})
-					: null,
+							.update(allTimeHighPriceInfo)
+							.set(athPriceInfo.data)
+							.where(eq(allTimeHighPriceInfo.tokenAddress, address))
+					: athPriceInfo?.exists === false
+						? txn.insert(allTimeHighPriceInfo).values(athPriceInfo.data)
+						: null,
 			]);
 		}),
 		ensureError,
