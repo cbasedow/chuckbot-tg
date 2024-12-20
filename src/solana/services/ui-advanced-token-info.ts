@@ -1,6 +1,6 @@
 import { insertFullSplToken } from "$/db/inserts/insert-full-spl-token";
 import { getFullSplTokenByTokenOrPoolAddress } from "$/db/queries/get-full-spl-token-by-token-or-pool-address";
-import type { DBAllTimeHighPriceInfo, DBFullSplToken, NewDBAthPriceInfo } from "$/db/schema";
+import type { DBFullSplToken, NewDBAthPriceInfo } from "$/db/schema";
 import { updateFullSplToken } from "$/db/updates/update-full-spl-token";
 import { logger } from "$/utils/logger";
 import BigNumber from "bignumber.js";
